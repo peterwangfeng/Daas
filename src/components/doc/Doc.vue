@@ -28,15 +28,18 @@
       <hr/>
       <img src="../../assets/doc2.png" alt="">
     </div>
+    <bottom></bottom>
   </div>
 </template>
 
 <script>
 import NavBar from '../children/navbar';
+import Bottom from '@/components/children/bottom';
 export default {
   name: 'doc',
   components: {
-    NavBar
+    NavBar,
+    Bottom
   }
 };
 </script>

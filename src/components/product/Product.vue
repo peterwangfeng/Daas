@@ -18,6 +18,6 @@ export default {
 
 <style scoped>
     .header > img {
-      width: 100%;
+      width: 90%;
     }
 </style>

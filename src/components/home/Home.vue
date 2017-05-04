@@ -26,15 +26,18 @@
         <p>邮编：210012</p>
       </div>
     </footer>
+    <bottom></bottom>
   </main>
 </template>
 
 <script>
 import NavBar from '../children/navbar';
+import Bottom from '@/components/children/bottom';
 export default {
   name: 'home',
   components: {
-    NavBar
+    NavBar,
+    Bottom
   }
 };
 </script>

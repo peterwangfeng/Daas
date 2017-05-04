@@ -19,12 +19,13 @@
           </div>
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-              <el-button type="text" @click="showDialog(true)">没有账号，申请试用</el-button>
+              <el-button type="text">没有账号，申请试用</el-button>
               <el-button type="primary" @click="login">登录</el-button>
             </div>
           </div>
         </div>
-          <el-dialog title="申请试用" v-model="dialog.dialogFormVisible">
+        <div class="es-dialog">
+          <el-dialog title="收货地址" :visible.sync="dialog.dialogFormVisible">
             <el-form :model="dialog.form">
               <el-form-item label="用户名" :label-width="dialog.formLabelWidth">
                 <el-input v-model="dialog.form.name" auto-complete="off"></el-input>
@@ -47,6 +48,7 @@
               <el-button type="primary" @click="showDialog(true)">确 定</el-button>
             </div>
           </el-dialog>
+        </div>
       </div>
     </div>
   </div>
@@ -62,7 +64,7 @@ export default {
         password: ''
       },
       dialog: {
-        formLabelWidth: '120px',
+        formLabelWidth: 180,
         dialogFormVisible: false,
         form: {
           name: '',
@@ -79,8 +81,7 @@ export default {
       this.$message({type: type, message: message});
     },
     showDialog(on) {
-      this.dialog.dialogFormVisible = true;
-      this.dialogFormVisible = on || false;
+      this.dialog.dialogFormVisible = on || false;
     },
     forgetPassword() {
       let self = this;

@@ -6,7 +6,7 @@
           <span>EaseStrategy DaaS | 数据服务平台</span>
         </div>
         <div class="col-md-6">
-        <el-menu :default-active="$route.path" class="el-menu-demo" mode="horizontal" theme="light" style="background-color:#fff;" unique-opened router>
+        <el-menu :default-active="$route.path" class="el-menu-demo" mode="horizontal" theme="dark" style="background-color:#fff;" unique-opened router>
           <el-menu-item index="/">主页</el-menu-item>
           <el-menu-item index="/product">产品</el-menu-item>
           <el-menu-item index="/doc">文档</el-menu-item>
@@ -32,7 +32,7 @@ export default {
 <style scoped>
   .navbar {
     border: none;
-    background-color: #fff !important;
+     background-color: #fff !important; 
   }
   .container {
     height: 60px;
