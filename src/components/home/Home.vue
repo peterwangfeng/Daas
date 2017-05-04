@@ -31,15 +31,15 @@
 </template>
 
 <script>
-import NavBar from '../children/navbar';
-import Bottom from '@/components/children/bottom';
-export default {
-  name: 'home',
-  components: {
-    NavBar,
-    Bottom
-  }
-};
+  import NavBar from '../children/navbar';
+  import Bottom from '@/components/children/bottom';
+  export default {
+    name: 'home',
+    components: {
+      NavBar,
+      Bottom
+    }
+  };
 </script>
 
 <style scoped>
