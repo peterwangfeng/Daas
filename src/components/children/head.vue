@@ -14,34 +14,34 @@
 </template>
 
 <script>
-import router from '../../router/index';
-export default {
-  name: 'heads',
-  data () {
-    return {
-      loginUser: {
-        id: 0,
-        name: ''
+  import router from '../../router/index';
+  export default {
+    name: 'heads',
+    data () {
+      return {
+        loginUser: {
+          id: 0,
+          name: ''
+        }
+      };
+    },
+    created () {
+      let self = this;
+      let loginUser = self.loginUser;
+      let appInfo = window.sessionStorage.getItem('userInfo');
+      if (appInfo) {
+        let infoes = String(appInfo).split('_');
+        loginUser.id = infoes[0];
+        loginUser.name = infoes[1];
       }
-    };
-  },
-  created () {
-    let self = this;
-    let loginUser = self.loginUser;
-    let appInfo = window.sessionStorage.getItem('userInfo');
-    if (appInfo) {
-      let infoes = String(appInfo).split('_');
-      loginUser.id = infoes[0];
-      loginUser.name = infoes[1];
+    },
+    methods: {
+      logout() {
+        window.sessionStorage.clear();
+        router.push({path: '/'});
+      }
     }
-  },
-  methods: {
-    logout () {
-      window.sessionStorage.clear();
-      router.push({path: '/'});
-    }
-  }
-};
+  };
 </script>
 
 <style lang="scss" scope>
@@ -51,7 +51,7 @@ export default {
     z-index: 200;
     .nav-left {
       float: left;
-      span{
+      span {
         color: #C5C7CA;
         font-size: 12px !important;
         font-weight: 100;
@@ -72,7 +72,7 @@ export default {
         cursor: pointer;
         margin: 0 10px 0 0;
       }
-      .es-user:hover,  .es-logout:hover {
+      .es-user:hover, .es-logout:hover {
         color: #37A2FE;
       }
       .es-logout {

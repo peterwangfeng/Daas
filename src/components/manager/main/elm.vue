@@ -16,28 +16,28 @@
       style="width: 100%;margin-top:20px;">
       <el-table-column
         align="center"
-        prop="date"
+        prop="phone"
         label="账号"
         width="180">
       </el-table-column>
       <el-table-column
         align="center"
-        prop="name"
+        prop="task_id"
         label="task id"
         width="180">
       </el-table-column>
       <el-table-column
         align="center"
-        prop="address"
+        prop="request_time"
         label="请求时间">
       </el-table-column>
       <el-table-column
-        prop="address"
+        prop="status"
         align="center"
         label="状态">
       </el-table-column>
       <el-table-column
-        prop="address"
+        prop="request_result"
         align="center"
         label="请求结果">
       </el-table-column>
@@ -50,19 +50,32 @@
     data() {
       return {
         input: '',
-        tableData: []
+        tableData: [{
+          phone: '18021790026',
+          task_id: '123',
+          request_time: '17-2-12',
+          status: 'ok',
+          request_result: '成功'
+        }, {
+          phone: '18021790026',
+          task_id: '123',
+          request_time: '17-2-12',
+          status: 'ok',
+          request_result: '成功'
+        }],
+        url: '/url-profile/v1/manage/'
       };
     },
     methods: {
       search() {
-        // this.$http.get('url')
-        // .then((res)=>{
-        // 	if(res.body.target ==='') {
-
-        // 	}
-        // }).catch((error)=>{
-
-        // })
+        this.$http.get(this.url + 'subjects?subject_id=' + this.input)
+          .then((res) => {
+            if (res.body.code === '100') {
+              this.tableData.push(res.body.data);
+            }
+          }).catch((error) => {
+            window.console.log(error);
+          });
         this.$alert(this.input, 'title', {
           confirmButtonText: true
         });

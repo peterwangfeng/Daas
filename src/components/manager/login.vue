@@ -12,9 +12,10 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="inputPassword" class ="col-sm-3 control-label"> 密 &nbsp;&nbsp;码</label>
+            <label for="inputPassword" class="col-sm-3 control-label"> 密 &nbsp;&nbsp;码</label>
             <div class="col-sm-9">
-              <input v-model="user.password" type="password" class="form-control" id="inputPassword" placeholder="请输入密码">
+              <input v-model="user.password" type="password" class="form-control" id="inputPassword"
+                     placeholder="请输入密码">
             </div>
           </div>
           <div class="form-group">
@@ -55,146 +56,148 @@
 </template>
 
 <script>
-import router from '../../router/index';
-export default {
-  data() {
-    return {
-      user: {
-        phone: '',
-        password: ''
-      },
-      dialog: {
-        formLabelWidth: 180,
-        dialogFormVisible: false,
-        form: {
-          name: '',
+  import router from '../../router/index';
+  export default {
+    data() {
+      return {
+        user: {
           phone: '',
-          password: '',
-          mail: '',
-          company: ''
+          password: ''
+        },
+        dialog: {
+          formLabelWidth: 180,
+          dialogFormVisible: false,
+          form: {
+            name: '',
+            phone: '',
+            password: '',
+            mail: '',
+            company: ''
+          }
+        }
+      };
+    },
+    methods: {
+      message(type, message) {
+        this.$message({type: type, message: message});
+      },
+      showDialog(on) {
+        this.dialog.dialogFormVisible = on || false;
+      },
+      forgetPassword() {
+        let self = this;
+        self.$alert('请联系管理员18317910981', ' ', {
+          confirmButtonText: '确定'
+        });
+      },
+      login() {
+        let self = this;
+        let regex = /\s/g;
+        let phoneRegex = /^1(3|4|5|7|8)\d{9}$/g;
+        let user = self.user;
+        let phone = user.phone;
+        let password = user.password;
+        let phoneTestResult = phoneRegex.test(phone);
+        let pdTestResult = regex.test(password);
+        if (phoneTestResult && password && !pdTestResult) {
+          // self.$http.post().then(function (response) {
+          //   let target = response.data;
+          //   let status = target.code;
+          //   if (status === '100') {
+          //   } else if (status === '') {
+          //   } else if (status === '') {
+          //   }
+          // }, fucntion (response) {
+          // });
+          router.push({path: '/index'});
+        } else if (!phoneTestResult) {
+          self.message('error', '非法的手机号码');
+        } else if (!password) {
+          self.message('warning', '密码不可为空');
+        } else if (pdTestResult) {
+          self.message('error', '非法的密码字符');
         }
       }
-    };
-  },
-  methods: {
-    message(type, message) {
-      this.$message({type: type, message: message});
-    },
-    showDialog(on) {
-      this.dialog.dialogFormVisible = on || false;
-    },
-    forgetPassword() {
-      let self = this;
-      self.$alert('请联系管理员18317910981', ' ', {
-        confirmButtonText: '确定'
-      });
-    },
-    login() {
-      let self = this;
-      let regex = /\s/g;
-      let phoneRegex = /^1(3|4|5|7|8)\d{9}$/g;
-      let user = self.user;
-      let phone = user.phone;
-      let password = user.password;
-      let phoneTestResult = phoneRegex.test(phone);
-      let pdTestResult = regex.test(password);
-      if (phoneTestResult && password && !pdTestResult) {
-        // self.$http.post().then(function (response) {
-        //   let target = response.data;
-        //   let status = target.code;
-        //   if (status === '100') {
-        //   } else if (status === '') {
-        //   } else if (status === '') {
-        //   }
-        // }, fucntion (response) {
-        // });
-        router.push({path: '/index'});
-      } else if (!phoneTestResult) {
-        self.message('error', '非法的手机号码');
-      } else if (!password) {
-        self.message('warning', '密码不可为空');
-      } else if (pdTestResult) {
-        self.message('error', '非法的密码字符');
-      }
     }
-  }
-};
+  };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-body{
-  min-height: 100%;
-  position: relative;
-}
-.container-fluid {
-  background: #003C96;
-  position: absolute;
-  width: 100%;
-  min-height: 100%;
-  h3 {
-    text-align: center;
-    color: #fff;
-    margin-top: 150px;
+  body {
+    min-height: 100%;
+    position: relative;
   }
-  .es-login{
-    width: 400px;
-    height: 270px;
-    margin: 100px auto;
-    margin-top: 40px;
-    background: #ffffff;
-    border-radius: 5px;
-    .el-button--text:last-child {
-      color: #ffffff;
+
+  .container-fluid {
+    background: #003C96;
+    position: absolute;
+    width: 100%;
+    min-height: 100%;
+    h3 {
+      text-align: center;
+      color: #fff;
+      margin-top: 150px;
     }
-    button{
-      font-size: 12px !important;
-    }
-    .form-horizontal .control-label{
-      color: #666666 !important;
-    }
-    p {
-      background: #32A0FF;
-      height: 40px;
-      line-height: 40px;
-      color: #ffffff;
-      padding: 0 20px;
-      border-radius: 5px 5px 0 0;
-      font-size: 16px;
-      span{
-        float: right;
-        font-size: 12px;
-      }
-    }
-    .es-login-content{
+    .es-login {
+      width: 400px;
+      height: 270px;
+      margin: 100px auto;
+      margin-top: 40px;
       background: #ffffff;
-      width: 100%;
-      padding: 20px;
-      el-button {
-        float: right;
-        margin-top: 20px;
+      border-radius: 5px;
+      .el-button--text:last-child {
+        color: #ffffff;
       }
-      .btn-link{
-        float: right;
-        background: none;
-        border: none;
-        outline: none;
-        margin: -8px -10px 0 0;
+      button {
+        font-size: 12px !important;
       }
-      .form-group{
-        border-bottom: 1px solid #dddddd;
+      .form-horizontal .control-label {
+        color: #666666 !important;
       }
-      .form-group:last-child{
-        border-bottom: none;
+      p {
+        background: #32A0FF;
+        height: 40px;
+        line-height: 40px;
+        color: #ffffff;
+        padding: 0 20px;
+        border-radius: 5px 5px 0 0;
+        font-size: 16px;
+        span {
+          float: right;
+          font-size: 12px;
+        }
       }
-      .form-control{
-        border:none;
-        box-shadow: none !important;
+      .es-login-content {
+        background: #ffffff;
+        width: 100%;
+        padding: 20px;
+        el-button {
+          float: right;
+          margin-top: 20px;
+        }
+        .btn-link {
+          float: right;
+          background: none;
+          border: none;
+          outline: none;
+          margin: -8px -10px 0 0;
+        }
+        .form-group {
+          border-bottom: 1px solid #dddddd;
+        }
+        .form-group:last-child {
+          border-bottom: none;
+        }
+        .form-control {
+          border: none;
+          box-shadow: none !important;
+        }
       }
     }
   }
-}
-.el-dialog__body p{
-  text-align: center;
-}
+
+  .el-dialog__body p {
+    text-align: center;
+  }
 </style>

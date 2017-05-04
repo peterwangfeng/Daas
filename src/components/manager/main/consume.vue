@@ -41,56 +41,61 @@
       <el-table-column
         align="center"
         prop="date"
-        label="账号"
+        label="日期"
         width="180">
       </el-table-column>
       <el-table-column
         align="center"
         prop="name"
-        label="task id"
+        label="饿了么"
         width="180">
       </el-table-column>
       <el-table-column
         align="center"
         prop="address"
-        label="请求时间">
+        label="百度外卖">
       </el-table-column>
       <el-table-column
         prop="address"
         align="center"
-        label="状态">
+        label="美团外卖">
       </el-table-column>
+      <el-table-column
+      prop="address"
+      align="center"
+      label="高校位置定位">
+    </el-table-column>
       <el-table-column
         prop="address"
         align="center"
-        label="请求结果">
+        label="合计">
       </el-table-column>
     </el-table>
   </div>
 </template>
 <script>
-  export default {
-    name: 'consume',
-    data() {
-      return {
-        value1: '',
-        value2: '',
-        input: '',
-        tableData: [],
-        pickerOptions0: {
-          disabledDate(time) {
-            return time.getTime() < Date.now() - 8.64e7;
-          }
-        },
-        pickerOptions1: {
-          disabledDate(time) {
-            return time.getTime() < Date.now() - 8.64e7;
-          }
+export default {
+  name: 'consume',
+  data() {
+    return {
+      value1: '',
+      value2: '',
+      input: '',
+      tableData: [],
+      pickerOptions0: {
+        disabledDate(time) {
+          return time.getTime() < Date.now() - 8.64e7;
         }
-      };
-    },
-    methods: {
-      search() {
+      },
+      pickerOptions1: {
+        disabledDate(time) {
+          return time.getTime() < Date.now() - 8.64e7;
+        }
+      }
+    };
+  },
+  methods: {
+    search() {
         // this.$http.get('url')
         // .then((res)=>{
         // 	if(res.body.target ==='') {
@@ -99,12 +104,12 @@
         // }).catch((error)=>{
 
         // })
-        this.$alert(this.value1, 'title', {
-          confirmButtonText: true
-        });
-      }
+      this.$alert(this.value1, 'title', {
+        confirmButtonText: true
+      });
     }
-  };
+  }
+};
 </script>
 <style scoped>
   .root {

@@ -26,7 +26,7 @@
       <el-table-column
         align="center"
         prop="address"
-        label="金额">
+        label="发票状态">
       </el-table-column>
     </el-table>
   </div>
@@ -36,8 +36,17 @@
     name: 'ticket',
     data() {
       return {
-        tableData: []
+        tableData: [],
+        url: '/url-profile/v1/manage/'
       };
+    },
+    created() {
+      this.$http.get(this.url + 'invoices?subject_id=')
+        .then((res) => {
+          if (res.body.code === '100') {
+            this.tableData = res.body.data;
+          }
+        });
     }
   };
 </script>

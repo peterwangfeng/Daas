@@ -8,7 +8,9 @@ import './assets/libs/font-awesome-4.7.0/css/font-awesome.min.css';
 import './assets/libs/basic-button.css';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-default/index.css';
+import VueResource from 'vue-resource';
 Vue.use(ElementUI);
+Vue.use(VueResource);
 Vue.config.productionTip = false;
 /* eslint-disable no-new */
 new Vue({
