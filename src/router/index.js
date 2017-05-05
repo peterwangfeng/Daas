@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from '@/components/home/home';
+import Home from '@/components/home/Home';
 import Product from '@/components/product/Product';
 import Doc from '@/components/doc/Doc';
 import Login from '@/components/manager/login';
@@ -9,9 +9,11 @@ import MainPage from '@/components/manager/main/index';
 import Search from '@/components/manager/main/elm';
 import Consume from '@/components/manager/main/consume';
 import Ticket from '@/components/manager/main/ticket';
+import Deposit from '@/components/manager/main/deposit';
 Vue.use(Router);
 
 const router = new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -34,6 +36,11 @@ const router = new Router({
       component: Login
     },
     {
+      path: '/trial',
+      name: 'Trial',
+      component: Login
+    },
+    {
       path: '/home',
       name: 'PlatformHome',
       component: PlatformHome,
@@ -44,7 +51,8 @@ const router = new Router({
         {path: '/meituan/:account', component: Search},
         {path: '/schoolgeo/:account', component: Search},
         {path: '/consume', component: Consume},
-        {path: '/ticket', component: Ticket}
+        {path: '/ticket', component: Ticket},
+        {path: '/deposit', component: Deposit}
       ]
     }
   ]

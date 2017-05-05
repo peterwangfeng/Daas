@@ -68,7 +68,9 @@
     },
     methods: {
       search() {
-        this.$http.get(this.url + 'subjects?subject_id=' + this.input)
+        this.$http.get('/user-profile/v1/manage' + window.sessionStorage.getItem('subject_id'), {
+          params: this.input
+        })
           .then((res) => {
             if (res.body.code === '100') {
               this.tableData.push(res.body.data);

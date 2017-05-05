@@ -52,7 +52,7 @@
           </span>
           </template>
           <el-menu-item-group>
-            <el-menu-item index="">充值</el-menu-item>
+            <el-menu-item index="/deposit">充值</el-menu-item>
           </el-menu-item-group>
           <el-menu-item-group>
             <el-menu-item index="/consume">消费查询</el-menu-item>
