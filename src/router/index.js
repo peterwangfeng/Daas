@@ -45,14 +45,14 @@ const router = new Router({
       name: 'PlatformHome',
       component: PlatformHome,
       children: [
-        {path: '/index', component: MainPage},
-        {path: '/elm/:account', component: Search},
-        {path: '/baidu/:account', component: Search},
-        {path: '/meituan/:account', component: Search},
-        {path: '/schoolgeo/:account', component: Search},
-        {path: '/consume', component: Consume},
-        {path: '/ticket', component: Ticket},
-        {path: '/deposit', component: Deposit}
+        { path: '/index', component: MainPage },
+        { path: '/elm/:account', component: Search },
+        { path: '/baidu/:account', component: Search },
+        { path: '/meituan/:account', component: Search },
+        { path: '/schoolgeo/:account', component: Search },
+        { path: '/consume', component: Consume },
+        { path: '/ticket', component: Ticket },
+        { path: '/deposit', component: Deposit }
       ]
     }
   ]

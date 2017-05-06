@@ -128,9 +128,7 @@
         this.value2 = y + '-' + m + '-' + d;
       },
       search() {
-//        window.alert(this.value1);
         let startTime = new Date(this.value1).toISOString().split('T')[0];
-//        this.$alert(startTime);
         let endTime = new Date(this.value2).toISOString().split('T')[0];
         this.$alert(startTime + '-' + endTime);
         let url = '/user-profile/v1/manage/subjects/' + window.sessionStorage.getItem('subject_id') + '/consume';
