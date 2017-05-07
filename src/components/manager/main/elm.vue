@@ -82,6 +82,13 @@
           confirmButtonText: true
         });
       }
+    },
+    watch: {
+      '$route'(to, from) {
+        console.log(to);
+        console.log(from);
+        this.tableData = [];
+      }
     }
   };
 </script>
