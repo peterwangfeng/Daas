@@ -1,6 +1,6 @@
 <template>
   <el-card class="root">
-    <h3>订单信息</h3>
+    <h4>订单信息</h4>
     <hr>
     <el-table
       border

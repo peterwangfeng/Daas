@@ -1,6 +1,6 @@
 <template>
   <el-card class="root">
-    <h3>消费查询</h3>
+    <h4>消费查询</h4>
     <hr>
     <el-row>
       <el-col :span="6">
@@ -119,11 +119,12 @@
         last = last < 10 ? '0' + last : last;
         let d = date.getDate();
         let d1 = d;
-        if (d < 7) {
+        if (d <= 7) {
           let temp = 7 - d;
           d1 = 30 - temp;
         }
         d = d < 10 ? '0' + d : d;
+        d1 = d1 < 10 ? '0' + d1 : d1;
         this.value1 = y + '-' + last + '-' + d1;
         this.value2 = y + '-' + m + '-' + d;
       },
