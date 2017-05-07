@@ -1,5 +1,5 @@
 <template>
-  <div class="root">
+  <el-card class="root">
     <h4>业务查询</h4>
     <hr>
     <el-row>
@@ -42,7 +42,7 @@
         label="请求结果">
       </el-table-column>
     </el-table>
-  </div>
+  </el-card>
 </template>
 <script>
   export default {
@@ -88,5 +88,6 @@
 <style scoped>
   .root {
     padding: 20px;
+    margin: 10px;
   }
 </style>
