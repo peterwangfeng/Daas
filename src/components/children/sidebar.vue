@@ -14,16 +14,16 @@
           </span>
           </template>
           <el-menu-item-group>
-            <el-menu-item index="/elm/饿了么账号">饿了么</el-menu-item>
+            <el-menu-item index="/elm/饿了么用户ID/1">饿了么</el-menu-item>
           </el-menu-item-group>
           <el-menu-item-group>
-            <el-menu-item index="/baidu/百度外卖账号">百度外卖</el-menu-item>
+            <el-menu-item index="/baidu/百度外卖用户ID/2">百度外卖</el-menu-item>
           </el-menu-item-group>
           <el-menu-item-group>
-            <el-menu-item index="/meituan/美团外卖账号">美团外卖</el-menu-item>
+            <el-menu-item index="/meituan/美团外卖用户ID/3">美团外卖</el-menu-item>
           </el-menu-item-group>
           <el-menu-item-group>
-            <el-menu-item index="/schoolgeo/高校地理定位账号">高校地理定位</el-menu-item>
+            <el-menu-item index="/schoolgeo/高校地理定位用户ID/4">高校地理定位</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
         <el-submenu index="3">

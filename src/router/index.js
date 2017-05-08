@@ -46,10 +46,10 @@ const router = new Router({
       component: PlatformHome,
       children: [
         { path: '/index', component: MainPage },
-        { path: '/elm/:account', component: Search },
-        { path: '/baidu/:account', component: Search },
-        { path: '/meituan/:account', component: Search },
-        { path: '/schoolgeo/:account', component: Search },
+        { path: '/elm/:account/:id', component: Search },
+        { path: '/baidu/:account/:id', component: Search },
+        { path: '/meituan/:account/:id', component: Search },
+        { path: '/schoolgeo/:account/:id', component: Search },
         { path: '/consume', component: Consume },
         { path: '/ticket', component: Ticket },
         { path: '/deposit', component: Deposit }

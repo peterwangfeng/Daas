@@ -11,9 +11,9 @@
         <el-col :span="6"><div class="grid-content bg-purple" @click="fourth">1000元<br>
           9.7折</div></el-col>
       </el-row>
-      <p class="text-left" style="font-size: 20px;">支付金额：{{ price }} 元</p>
-      <p class="text-left" style="font-size: 20px;margin-bottom: 40px" >支付方式</p>
-      <el-row gutter="20">
+      <h4 class="text-left price">支付金额：{{ price }} 元</h4>
+      <h4 class="text-left payment">支付方式</h4>
+      <el-row>
         <el-col :span="6">
           <img src="../../../assets/支付宝.svg" alt="">
         </el-col>
@@ -87,5 +87,15 @@
   .row-bg {
     padding: 10px 0;
     background-color: #f9fafc;
+  }
+  .price {
+    margin-top: 20px;
+  }
+  .payment {
+    margin-top: 50px;
+  }
+  img:hover {
+    cursor: pointer;
+    opacity: .7;
   }
 </style>

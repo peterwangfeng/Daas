@@ -6,7 +6,7 @@
       </div>
       <div class="nav-right">
         <span>用户：</span>
-        <span class="es-user">{{loginUser.name}}ease</span>|  &nbsp;退出
+        <span class="es-user">{{ loginUser.name }}</span>|  &nbsp;退出
         <span class="glyphicon glyphicon-off es-logout" aria-hidden="true" @click="logout" title="退出"></span>
       </div>
     </nav>

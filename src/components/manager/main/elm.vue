@@ -16,28 +16,28 @@
       style="width: 100%;margin-top:20px;">
       <el-table-column
         align="center"
-        prop="phone"
-        label="账号"
+        prop="user_id"
+        label="用户ID"
         width="180">
       </el-table-column>
       <el-table-column
         align="center"
-        prop="task_id"
+        prop="id"
         label="task id"
         width="180">
       </el-table-column>
       <el-table-column
         align="center"
-        prop="request_time"
+        prop="create_time"
         label="请求时间">
       </el-table-column>
       <el-table-column
-        prop="status"
+        prop="phase_status"
         align="center"
         label="状态">
       </el-table-column>
       <el-table-column
-        prop="request_result"
+        prop="finished"
         align="center"
         label="请求结果">
       </el-table-column>
@@ -50,44 +50,43 @@
     data() {
       return {
         input: '',
-        tableData: [{
-          phone: '18021790026',
-          task_id: '123',
-          request_time: '17-2-12',
-          status: 'ok',
-          request_result: '成功'
-        }, {
-          phone: '18021790026',
-          task_id: '123',
-          request_time: '17-2-12',
-          status: 'ok',
-          request_result: '成功'
-        }],
-        url: '/url-profile/v1/manage/'
+        tableData: []
       };
     },
     methods: {
       search() {
-        this.$http.get('/user-profile/v1/manage' + window.sessionStorage.getItem('subject_id'), {
-          params: this.input
+        this.tableData = [];
+        let url = 'http://192.168.0.103:5000/user-profile/v1/manage/subjects/2/tasks/';
+        this.$http.get(url, {
+          params: {
+            product_id: this.$route.params.id,
+            user_id: this.input,
+            cur_page: 1,
+            page_size: 20
+          }
         })
           .then((res) => {
-            if (res.body.code === '100') {
-              this.tableData.push(res.body.data);
+            if (res.body.code === 100) {
+              console.log(res.body.data);
+              // this.tableData.push(res.body.data);
+              this.tableData = res.body.data.task_list.map((item) => {
+                item.user_id = this.input;
+                item.finished = item.finished === 0 ? '失败' : '成功';
+                return item;
+              });
             }
           }).catch((error) => {
             window.console.log(error);
           });
-        this.$alert(this.input, 'title', {
-          confirmButtonText: true
-        });
+        // this.$alert(this.input, 'title', {
+        //   confirmButtonText: true
+        // });
       }
     },
     watch: {
       '$route'(to, from) {
-        console.log(to);
-        console.log(from);
         this.tableData = [];
+        this.input = '';
       }
     }
   };

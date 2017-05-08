@@ -10,7 +10,7 @@
             type="date"
             format="yyyy-MM-dd"
             placeholder="选择日期"
-            :picker-options="pickerOptions0">
+            >
           </el-date-picker>
           <span style="position:relative;left:25px;">至</span>
         </div>
@@ -23,7 +23,7 @@
             format
             type="date"
             placeholder="选择日期"
-            :picker-options="pickerOptions1">
+            >
           </el-date-picker>
         </div>
       </el-col>
@@ -37,43 +37,24 @@
         <el-button type="primary" @click="search" size="large" style="width: 60%;position: relative;top: -3px;">查询</el-button>
       </el-col>
     </el-row>
-    <el-table
-      border
-      :data="tableData"
-      style="width: 100%;margin-top:20px;">
-      <el-table-column
-        align="center"
-        prop="date"
-        label="日期"
-        width="180">
-      </el-table-column>
-      <el-table-column
-        align="center"
-        prop="name"
-        label="饿了么"
-        width="180">
-      </el-table-column>
-      <el-table-column
-        align="center"
-        prop="address"
-        label="百度外卖">
-      </el-table-column>
-      <el-table-column
-        prop="address"
-        align="center"
-        label="美团外卖">
-      </el-table-column>
-      <el-table-column
-        prop="address"
-        align="center"
-        label="高校位置定位">
-      </el-table-column>
-      <el-table-column
-        prop="address"
-        align="center"
-        label="合计">
-      </el-table-column>
-    </el-table>
+    <table class="table table-striped table-bordered table-hover">
+      <tr>
+        <th>日期</th>
+        <th>饿了么</th>
+        <th>百度外卖</th>
+        <th>美团外卖</th>
+        <th>高校位置定位</th>
+        <th>合计</th>
+      </tr>
+      <tr v-for="(value, key) in tableData">
+        <td>{{key}}</td>
+        <td>{{value.ELEME || 0}}</td>
+        <td>{{value.BAIDU || 0}}</td>
+        <td>{{value.MEITUAN || 0}}</td>
+        <td>{{value.SCHOOL || 0}}</td>
+        <td>{{(value.ELEME || 0) + (value.BAIDU || 0) + (value.MEITUAN || 0) + (value.SCHOOL || 0)}}</td>
+      </tr>
+    </table>
   </el-card>
 </template>
 <script>
@@ -84,17 +65,7 @@
         value1: '',
         value2: '',
         input: '',
-        tableData: [],
-        pickerOptions0: {
-          disabledDate(time) {
-            return time.getTime() < Date.now() - 8.64e7;
-          }
-        },
-        pickerOptions1: {
-          disabledDate(time) {
-            return time.getTime() < Date.now() - 8.64e7;
-          }
-        }
+        tableData: null
       };
     },
     methods: {
@@ -109,6 +80,15 @@
         d = d < 10 ? '0' + d : d;
         this.value2 = y + '-' + m + '-' + d;
         this.value1 = y + '-' + last + '-' + d;
+      },
+      formatDate(value) {
+        let date = new Date(value);
+        let y = date.getFullYear();
+        let m = date.getMonth() + 1;
+        let d = date.getDate();
+        m = m < 10 ? '0' + m : m;
+        d = d < 10 ? '0' + d : d;
+        return y + '-' + m + '-' + d;
       },
       week() {
         let date = new Date();
@@ -132,18 +112,29 @@
         this.value2 = y + '-' + m + '-' + d;
       },
       search() {
-        let startTime = new Date(this.value1).toISOString().split('T')[0];
-        let endTime = new Date(this.value2).toISOString().split('T')[0];
-        this.$alert(startTime + '-' + endTime);
-        let url = '/user-profile/v1/manage/subjects/' + window.sessionStorage.getItem('subject_id') + '/consume';
+        this.tableData = null;
+        if (this.value1 === '' && this.value2 === '') {
+          this.$message.error('请选择日期');
+          return;
+        }
+        let startTime = this.formatDate(this.value1);
+        let endTime = this.formatDate(this.value2);
+        let url = 'http://192.168.0.103:5000/user-profile/v1/manage/subjects/' + 2 + '/consume/';
         this.$http.get(url, {
           params: {
             start_date: startTime,
-            end_date: endTime
+            end_date: endTime,
+            cur_page: 1,
+            page_size: 20
           }
         }).then((res) => {
-          if (res.body.code === '100') {
-            this.tableData = res.body.data;
+          if (res.body.code === 100) {
+            if (res.body.data !== null) {
+              this.tableData = res.body.data.consume_list[0];
+            } else {
+              this.tableData = null;;
+            }
+            // console.log(this.tableData);
           }
         }).catch((error) => {
           window.console.log(error);
@@ -156,5 +147,21 @@
   .root {
     padding: 20px;
     margin: 10px;
+  }
+  table {
+    margin-top: 20px;
+    font-size: 14px;
+  }
+  tr {
+    height: 40px;
+  }
+  table tr:nth-child(1) {
+    background-color: #eef1f6;
+  }
+  th {
+    color: #000;
+  }
+  th, td {
+    text-align: center;
   }
 </style>
