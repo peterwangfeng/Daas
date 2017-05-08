@@ -116,12 +116,15 @@
         let m = date.getMonth() + 1;
         let last = date.getMonth();
         m = m < 10 ? '0' + m : m;
-        last = last < 10 ? '0' + last : last;
         let d = date.getDate();
         let d1 = d;
         if (d <= 7) {
           let temp = 7 - d;
           d1 = 30 - temp;
+        } else {
+          d1 = d - 7;
+          last = last + 1;
+          last = last < 10 ? '0' + last : last;
         }
         d = d < 10 ? '0' + d : d;
         d1 = d1 < 10 ? '0' + d1 : d1;
