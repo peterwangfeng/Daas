@@ -14,7 +14,7 @@
           </el-menu>
         </div>
         <div class="col-md-1">
-          <el-button type="text">申请试用</el-button>
+          <el-button type="text">申请试用{{$route.path}}</el-button>
         </div>
       </div>
     </nav>
