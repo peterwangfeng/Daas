@@ -3,7 +3,8 @@
     <nav-bar></nav-bar>
     <div class="left col-md-2">
       <div class="search">
-        <input type="text" placeholder="搜索">
+        <el-input placeholder="搜索" icon="search" v-model="input" :on-icon-click="handleIconClick">
+        </el-input>
       </div>
       <ol>
         <li>数据产品介绍</li>
@@ -18,8 +19,12 @@
       <h3>标题</h3>
       <hr/>
       <h3>目录</h3>
-      <p><span class="subtext">1.子标题1</span></p>
-      <p><span class="subtext">2.子标题2</span></p>
+      <p>
+        <span class="subtext">1.子标题1</span>
+      </p>
+      <p>
+        <span class="subtext">2.子标题2</span>
+      </p>
       <hr/>
       <h3>子标题1</h3>
       <hr/>
@@ -40,51 +45,73 @@ export default {
   components: {
     NavBar,
     Bottom
+  },
+  data() {
+    return {
+      input: ''
+    };
   }
 };
 </script>
 
 <style scoped>
-  input {
-    border-radius: 10px;
-    outline: none;
-    margin-bottom: 10px;
-    width: 100%;
-    padding: 5px 10px;
-  }
+body {
+  overflow: auto !important;
+  color: red;
+}
 
-  .left {
-    height: 500px;
-    padding: 0;
-    border-right: 1px solid gray;
-    background-color: #f2f2f2;
-  }
-  .right {
-    border: none;
-  }
-  .search {
-    background-color: #fff;
-  }
+.root {
+  background-color: #fff;
+  padding-top: 60px;
+}
 
-  ol {
-    padding: 0 10px;
-    margin: 0 0 0 15px;
-  }
+input {
+  border-radius: 10px;
+  outline: none;
+  margin-bottom: 10px;
+  width: 100%;
+  padding: 5px 10px;
+}
 
-  ol li {
-    padding: 10px 0;
-  }
+.left {
+  height: 590px;
+  padding: 0;
+  color: #ccc;
+  border-right: 1px solid gray;
+  background-color: #324157;
+  margin-top: -20px;
+}
 
-  p {
-    padding: 0 10px
-  }
+.right {
+  background-color: #fff;
+  border: none;
+  margin-top: -20px;
+}
 
-  .subtext {
-    color: deepskyblue;
-    padding: 0 5px;
-  }
+.search {
+  background-color: #fff;
+}
 
-  img {
-    width: 100%;
-  }
+ol {
+  padding: 0 10px;
+  margin: 0 0 0 15px;
+  margin-top: 20px;
+}
+
+ol li {
+  padding: 10px 0;
+}
+
+p {
+  padding: 0 10px
+}
+
+.subtext {
+  color: deepskyblue;
+  padding: 0 5px;
+}
+
+img {
+  width: 90%;
+}
 </style>

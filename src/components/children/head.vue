@@ -38,7 +38,7 @@
     methods: {
       logout() {
         window.sessionStorage.clear();
-        router.push({path: '/'});
+        router.push({path: '/platform'});
       }
     }
   };

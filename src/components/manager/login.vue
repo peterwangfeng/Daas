@@ -130,7 +130,7 @@
   }
 
   .container-fluid {
-    background: #003C96;
+    background: #1D8CE0;
     position: absolute;
     width: 100%;
     min-height: 100%;
