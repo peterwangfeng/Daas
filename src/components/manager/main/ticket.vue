@@ -110,7 +110,6 @@ export default {
       this.dialogFormVisible = false;
       let url = 'http://192.168.0.118:5000/user-profile/v1/manage/subjects/2/invoices/';
       this.$http.post(url, this.form).then((res) => {
-        // window.console.log(res);
         if (res.body.code === 100) {
           this.getDeposit();
         }

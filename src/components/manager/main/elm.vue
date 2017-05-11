@@ -22,6 +22,7 @@
       <el-table-column prop="finished" align="center" label="请求结果">
       </el-table-column>
     </el-table>
+    <div>{{a}}</div>
   </el-card>
 </template>
 <script>
@@ -50,7 +51,8 @@ export default {
         .then((res) => {
           this.loading = false;
           if (res.body.code === 100) {
-            console.log(res.body.data);
+            console.log(res);
+            console.log(res.data);
             // this.tableData.push(res.body.data);
             this.tableData = res.body.data.task_list.map((item) => {
               item.user_id = this.input;
@@ -69,6 +71,8 @@ export default {
   },
   watch: {
     '$route'(to, from) {
+      console.log(to);
+      console.log(from);
       this.tableData = [];
       this.input = '';
       this.loading = false;

@@ -37,11 +37,11 @@
       </tr>
       <tr v-for="(value, key) in tableData">
         <td>{{key}}</td>
-        <td>{{value.ELEME || 0}}元</td>
-        <td>{{value.BAIDU || 0}}元</td>
-        <td>{{value.MEITUAN || 0}}元</td>
-        <td>{{value.SCHOOL || 0}}元</td>
-        <td>{{(value.ELEME || 0) + (value.BAIDU || 0) + (value.MEITUAN || 0) + (value.SCHOOL || 0)}}元</td>
+        <td>{{(value.ELEME) || 0}}.00元</td>
+        <td>{{value.BAIDU || 0.00}}.00元</td>
+        <td>{{value.MEITUAN || 0.00}}.00元</td>
+        <td>{{value.SCHOOL || 0.00}}.00元</td>
+        <td>{{(value.ELEME || 0) + (value.BAIDU || 0) + (value.MEITUAN || 0) + (value.SCHOOL || 0)}}.00元</td>
       </tr>
     </table>
   </el-card>

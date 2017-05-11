@@ -27,7 +27,7 @@
         <el-input v-model="price" placeholder="请输入金额"></el-input>
       </el-col>
     </el-row>
-    <h4 class="text-left price">支付金额：{{ price }} 元</h4>
+    <h4 class="text-left price">支付金额：{{ Number(price) }} 元</h4>
     <h4 class="text-left payment">支付方式</h4>
     <el-row>
       <el-col :span="6">
