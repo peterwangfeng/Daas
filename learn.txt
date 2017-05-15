@@ -1,12 +1,12 @@
-1.Css
+1.CSS
 2.JS
-3.Vue
-4.Bootstrap
-5.Element-UI
-6.jQuery
-7.Echarts
-8.Git(git init,git add ./, git commit -m 'description',git clone githubURL, git pull origin dev,,git remote -v,git remote add origin githubURL,git push origin dev(),git checkout -b dev(查看并切换分支),git branch(查看分支))
+3.Vue(JS框架)
+4.Bootstrap(UI库)
+5.Element-UI(UI框架)
+6.jQuery(了解,不怎么使用)
+7.Echarts(数据可视化图标库)
+8.Git(git init, git add ./, git commit -m 'description',git clone SSH(clone远程仓库), git pull origin dev(更新本地仓库),,git remote -v,git remote add origin SSH,git push origin dev(推送到远程仓库),git checkout -b dev(查看并切换分支),git branch(查看分支))
 9.Postman
-10.WebStorm
-11.html5新特性(sessionStorage,localStorage)
-12.npm,yarn包管理工具
+10.WebStorm(开发工具),VS Code,Sublime,Atom
+11.H5新特性(sessionStorage,localStorage)
+12.npm,cnpm,yarn(包管理工具)

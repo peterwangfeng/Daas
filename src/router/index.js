@@ -13,8 +13,9 @@ import Configuration from '@/components/manager/configuration/productConfig';
 import Consume from '@/components/manager/finance/consume';
 import Ticket from '@/components/manager/finance/ticket';
 import Deposit from '@/components/manager/finance/deposit';
-import { Loading } from 'element-ui';
-import { MessageBox } from 'element-ui';
+import {Loading} from 'element-ui';
+import {MessageBox} from 'element-ui';
+
 Vue.use(Router);
 Vue.use(Resource);
 const router = new Router({

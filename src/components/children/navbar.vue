@@ -5,7 +5,8 @@
         <span>EaseStrategy DaaS | 数据服务平台</span>
       </div>
       <div class="col-md-5">
-        <el-menu :default-active="$route.path" class="el-menu-demo" mode="horizontal" theme="light" style="background-color:#fff;" unique-opened router @select="showNavBar">
+        <el-menu :default-active="$route.path" class="el-menu-demo" mode="horizontal" theme="light"
+                 style="background-color:#fff;" unique-opened router @select="showNavBar">
           <el-menu-item index="/">主页</el-menu-item>
           <el-menu-item index="/product">产品</el-menu-item>
           <el-menu-item index="/doc">文档</el-menu-item>
@@ -20,26 +21,26 @@
 </template>
 
 <script>
-import bus from '../../api/bus';
-export default {
-  name: 'navBar',
-  data() {
-    return {
-    };
-  },
-  methods: {
-    showDialog() {
-      bus.$emit('apply-use', true);
+  import bus from '../../api/bus';
+
+  export default {
+    name: 'navBar',
+    data() {
+      return {};
     },
-    showNavBar(index) {
-      let isShow = true;
-      if (String(index).indexOf('/platform') >= 0) {
-        isShow = false;
+    methods: {
+      showDialog() {
+        bus.$emit('apply-use', true);
+      },
+      showNavBar(index) {
+        let isShow = true;
+        if (String(index).indexOf('/platform') >= 0) {
+          isShow = false;
+        }
+        bus.$emit('showNavBar', isShow);
       }
-      bus.$emit('showNavBar', isShow);
     }
-  }
-};
+  };
 </script>
 
 <style scoped lang="scss">

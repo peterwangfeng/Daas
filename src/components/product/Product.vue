@@ -7,17 +7,18 @@
 </template>
 
 <script>
-import Bottom from '../children/bottom';
-export default {
-  name: 'product',
-  components: {
-    Bottom
-  }
-};
+  import Bottom from '../children/bottom';
+
+  export default {
+    name: 'product',
+    components: {
+      Bottom
+    }
+  };
 </script>
 
 <style scoped>
-    .header > img {
-      width: 100%;
-    }
+  .header > img {
+    width: 100%;
+  }
 </style>
