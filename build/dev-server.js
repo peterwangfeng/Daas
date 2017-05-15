@@ -21,10 +21,22 @@ var autoOpenBrowser = !!config.dev.autoOpenBrowser
 // Define HTTP proxies to your custom API backend
 // https://github.com/chimurai/http-proxy-middleware
 var proxyTable = config.dev.proxyTable
+// proxy middleware options
+
 
 var app = express()
 var compiler = webpack(webpackConfig)
+var options = {
+  // target host
+  // target: 'http://155.36.0.235:8080',
+  target: 'http://115.28.27.207:5555',
+  changeOrigin: true,               // needed for virtual hosted sites
+  ws: true                        // proxy websockets
+};
 
+// create the proxy (without context)
+var exampleProxy = proxyMiddleware('/user-profile/**', options);
+app.use(exampleProxy);
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,
   quiet: true

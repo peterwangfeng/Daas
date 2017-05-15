@@ -1,9 +1,8 @@
 <template>
   <div class="root">
-    <nav-bar></nav-bar>
     <div class="left col-md-2">
       <div class="search">
-        <el-input placeholder="搜索" icon="search" v-model="input" :on-icon-click="handleIconClick">
+        <el-input placeholder="搜索" icon="search" v-model="input">
         </el-input>
       </div>
       <ol>
@@ -38,12 +37,10 @@
 </template>
 
 <script>
-import NavBar from '../children/navbar';
 import Bottom from '@/components/children/bottom';
 export default {
   name: 'doc',
   components: {
-    NavBar,
     Bottom
   },
   data() {
@@ -61,7 +58,6 @@ body {
 }
 
 .root {
-  background-color: #fff;
   padding-top: 60px;
 }
 
@@ -83,7 +79,6 @@ input {
 }
 
 .right {
-  background-color: #fff;
   border: none;
   margin-top: -20px;
 }

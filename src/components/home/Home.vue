@@ -1,6 +1,5 @@
 <template>
   <main>
-    <nav-bar></nav-bar>
     <div class="data-as-service">
       <img src="../../assets/serive.png" alt="data-as-service">
     </div>
@@ -22,7 +21,7 @@
         <p>商务合作：025-85315811</p>
         <p>技术支持：18221381443</p>
         <p>邮箱：brian@easestrategy.com</p>
-        <p>地址：南京市雨花台区软件大道109号雨花 客厅3栋808</p>
+        <p>地址：南京市雨花台区软件大道109号雨花         客厅3栋808</p>
         <p>邮编：210012</p>
       </div>
     </footer>
@@ -31,42 +30,36 @@
 </template>
 
 <script>
-import NavBar from '../children/navbar';
-import Bottom from '@/components/children/bottom';
+import Bottom from '../children/bottom';
 export default {
   name: 'home',
   components: {
-    NavBar,
     Bottom
   }
 };
 </script>
 
 <style scoped>
-.data-as-service {
-  padding-top: 60px;
-}
+  .data-as-service img {
+    width: 100%;
+    height: 100%;
+  }
 
-.data-as-service img {
-  width: 100%;
-  height: 100%;
-}
+  h4 {
+    margin: 30px 0;
+    text-align: center;
+    font-weight: bolder;
+  }
 
-h4 {
-  margin: 30px 0;
-  text-align: center;
-  font-weight: bolder;
-}
+  .platform-advantage {
+    display: flex;
+    justify-content: space-around;
+  }
 
-.platform-advantage {
-  display: flex;
-  justify-content: space-around;
-}
-
-.customer-evaluate {
-  margin-top: 50px;
-  height: 280px;
-  background-color: #ccc;
-  padding-top: 20px;
-}
+  .customer-evaluate {
+    margin-top: 50px;
+    height: 280px;
+    background-color: #ccc;
+    padding-top: 20px;
+  }
 </style>

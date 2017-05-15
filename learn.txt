@@ -1,0 +1,12 @@
+1.Css
+2.JS
+3.Vue
+4.Bootstrap
+5.Element-UI
+6.jQuery
+7.Echarts
+8.Git(git init,git add ./, git commit -m 'description',git clone githubURL, git pull origin dev,,git remote -v,git remote add origin githubURL,git push origin dev(),git checkout -b dev(查看并切换分支),git branch(查看分支))
+9.Postman
+10.WebStorm
+11.html5新特性(sessionStorage,localStorage)
+12.npm,yarn包管理工具

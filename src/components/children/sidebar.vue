@@ -1,29 +1,25 @@
 <template>
   <el-row class="tac">
     <el-col :span="8">
-      <el-menu :default-active="$route.path" class="el-menu-vertical-demo" theme="dark" unique-opened router>
-        <el-submenu index="/index" @click.native="to">
-          <template slot="title">
+      <el-menu :default-active="index" class="el-menu-vertical-demo" theme="dark" unique-opened router>
+        <el-menu-item index="/index">
+          <span class="icon">
             <span>首页</span>
-          </template>
-        </el-submenu>
+          </span>
+        </el-menu-item>
+        <el-menu-item index="/notice">
+          <span class="icon">
+            <span>通知中心</span>
+          </span>
+        </el-menu-item>
         <el-submenu index="2">
           <template slot="title">
             <span class="icon">
               <span>云监控查询</span>
             </span>
           </template>
-          <el-menu-item-group>
-            <el-menu-item index="/elm/饿了么用户ID/1">饿了么</el-menu-item>
-          </el-menu-item-group>
-          <el-menu-item-group>
-            <el-menu-item index="/baidu/百度外卖用户ID/2">百度外卖</el-menu-item>
-          </el-menu-item-group>
-          <el-menu-item-group>
-            <el-menu-item index="/meituan/美团外卖用户ID/3">美团外卖</el-menu-item>
-          </el-menu-item-group>
-          <el-menu-item-group>
-            <el-menu-item index="/schoolgeo/高校地理定位用户ID/4">高校地理定位</el-menu-item>
+          <el-menu-item-group v-for="product in subjectProductMonitor" :key="product">
+            <el-menu-item :index="product.router" v-text="product.name"></el-menu-item>
           </el-menu-item-group>
         </el-submenu>
         <el-submenu index="3">
@@ -32,17 +28,8 @@
               <span>配置管理</span>
             </span>
           </template>
-          <el-menu-item-group>
-            <el-menu-item index="">饿了么</el-menu-item>
-          </el-menu-item-group>
-          <el-menu-item-group>
-            <el-menu-item index="">百度外卖</el-menu-item>
-          </el-menu-item-group>
-          <el-menu-item-group>
-            <el-menu-item index="">美团外卖</el-menu-item>
-          </el-menu-item-group>
-          <el-menu-item-group>
-            <el-menu-item index="">高校地理定位</el-menu-item>
+          <el-menu-item-group v-for="product in subjectProductConfig" :key="product">
+            <el-menu-item :index="product.router" v-text="product.name"></el-menu-item>
           </el-menu-item-group>
         </el-submenu>
         <el-submenu index="4">
@@ -67,17 +54,71 @@
 </template>
 
 <script>
-import router from '../../router/index';
+import URL from '../../api/url';
+import bus from '../../api/bus';
 export default {
   name: 'sidebar',
   data() {
     return {
-      index: '/index'
+      index: '/index',
+      subjectId: 0,
+      subjectProductMonitor: [],
+      subjectProductConfig: []
     };
   },
+  mounted() {
+    let self = this;
+    let subjectString = window.sessionStorage.getItem('subject');
+    if (subjectString) {
+      let subjectObject = JSON.parse(subjectString);
+      self.subjectId = subjectObject.id;
+      self.init();
+      self.handlerEvents(self);
+    }
+  },
   methods: {
-    to() {
-      router.push({ path: '/index' });
+    urlPartReplace(url, origin, dest) {
+      return String(url).replace(origin, dest);
+    },
+    init() {
+      let self = this;
+      let subjectProductConfig = [];
+      let subjectProductMonitor = [];
+      let subjectId = self.subjectId;
+      let url = self.urlPartReplace(URL.GET_PRODUCTS_URL, '{subject_id}', subjectId);
+      self.$http.get(url).then(function (response) {
+        let target = response.data;
+        if (target.code === 100) {
+          let data = target.data;
+          if (data) {
+            let product_list = data.product_list;
+            product_list.map((product) => {
+              let id = product.id;
+              let name = product.remark;
+              let uri = encodeURI(name + '-' + id);
+              let monitor_temp = { router: '/monitor/' + uri, name: name };
+              let config_temp = { router: '/configuration/' + uri, name: name };
+              subjectProductMonitor.push(monitor_temp);
+              subjectProductConfig.push(config_temp);
+              self.subjectProductConfig = subjectProductConfig;
+              self.subjectProductMonitor = subjectProductMonitor;
+            });
+          }
+        }
+      }, function (response) {
+      });
+    },
+    handlerEvents(self) {
+      bus.$on('deposit', function (router) {
+        if (router) {
+          self.index = router;
+        }
+      });
+      bus.$on('notice', function (router) {
+        if (router) {
+          self.index = router;
+        }
+      });
     }
   }
 };
@@ -92,15 +133,22 @@ export default {
   height: calc(100% - 50px) !important;
   background: #324157 !important;
   overflow-y: auto;
-}
-
-.el-submenu {
-  border: 1px solid #475669;
-}
-
-.el-menu-item {
-  height: 40px !important;
-  line-height: 40px !important;
-  margin-top: -15px;
+  z-index: 9998;
+  .el-menu {
+    >.el-menu-item {
+      border-top: 1px solid #475669;
+    }
+    .el-submenu {
+      border-top: 1px solid #475669;
+      .el-menu-item {
+        height: 40px !important;
+        line-height: 40px !important;
+        margin-top: -15px;
+      }
+    }
+    .el-submenu:last-child {
+      border-bottom: 1px solid #475669;
+    }
+  }
 }
 </style>
